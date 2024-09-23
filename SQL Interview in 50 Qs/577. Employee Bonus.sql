@@ -27,7 +27,7 @@ Write a solution to report the name and bonus amount of each employee with a bon
 Return the result table in any order.
 """
 
-# Write your MySQL query statement below
+  # Write your MySQL query statement below
 SELECT E.name, B.bonus
 FROM Employee as E
 LEFT JOIN Bonus as B ON E.empId = B.empId

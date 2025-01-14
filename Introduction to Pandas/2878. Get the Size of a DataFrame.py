@@ -1,3 +1,4 @@
+"""
 DataFrame players:
 +-------------+--------+
 | Column Name | Type   |
@@ -13,4 +14,10 @@ Write a solution to calculate and display the number of rows and columns of play
 Return the result as an array:
 
 [number of rows, number of columns]
+"""
 
+import pandas as pd
+
+def getDataframeSize(players: pd.DataFrame) -> List[int]:
+    [rows,columns] = players.shape 
+    return [rows,columns]

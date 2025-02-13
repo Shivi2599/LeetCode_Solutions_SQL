@@ -1,0 +1,6 @@
+import pandas as pd
+
+def find_patients(patients: pd.DataFrame) -> pd.DataFrame:
+  ## Handling Emply Conditions
+    result =  patients[patients['conditions'].fillna("").str.split().apply(lambda x: any(c.startswith("DIAB1") for c in x))]
+    return result[['patient_id','patient_name','conditions']]

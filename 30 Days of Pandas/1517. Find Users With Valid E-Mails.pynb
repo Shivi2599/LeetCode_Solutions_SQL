@@ -1,0 +1,5 @@
+import pandas as pd
+
+def valid_emails(users: pd.DataFrame) -> pd.DataFrame:
+   result_valid_emails = users[users['mail'].str.fullmatch(r"^[a-zA-Z][\w.-]*@leetcode\.com")]
+   return result_valid_emails

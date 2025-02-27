@@ -1,0 +1,6 @@
+import pandas as pd
+
+def find_classes(courses: pd.DataFrame) -> pd.DataFrame:
+    result = courses['class'].value_counts(ascending =False).reset_index(name = 'count')
+    result = result[result['count'] >=5][['class']]
+    return result.reset_index(drop = True)

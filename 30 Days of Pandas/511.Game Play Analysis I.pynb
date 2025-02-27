@@ -1,0 +1,9 @@
+import pandas as pd
+
+def game_analysis(activity: pd.DataFrame) -> pd.DataFrame:
+    activity['event_date'] = pd.to_datetime(activity['event_date'], format = "%Y-%m-%d")
+    activity.sort_values(by = 'event_date', inplace = True)
+    first_login_date = activity.drop_duplicates(subset = 'player_id', keep = 'first')
+    result = first_login_date[['player_id','event_date']]
+    result = result.rename(columns = {'event_date':'first_login'})
+    return result.reset_index(drop = True)

@@ -1,0 +1,8 @@
+import pandas as pd
+
+def count_unique_subjects(teacher: pd.DataFrame) -> pd.DataFrame:
+    unique_subjects = teacher[['teacher_id','subject_id']]
+    unique_subjects = unique_subjects.drop_duplicates()
+    unique_subjects.reset_index(drop = True)  
+    result = unique_subjects['teacher_id'].value_counts().reset_index()
+    return result.rename(columns = {'count':'cnt'})

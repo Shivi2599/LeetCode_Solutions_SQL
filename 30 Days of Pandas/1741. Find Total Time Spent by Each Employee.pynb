@@ -1,0 +1,9 @@
+import pandas as pd
+
+def total_time(employees: pd.DataFrame) -> pd.DataFrame:
+    employees['total time spent in office'] = employees['out_time'] - employees['in_time']
+    result = employees[['event_day','emp_id', 'total time spent in office']]
+    result = result.groupby(['event_day', 'emp_id'], as_index = False)['total time spent in office'].sum()
+    return result.rename(columns = {'event_day':'day', 'total time spent in office':'total_time'})
+
+## Setting *as_index=False* ensures that the grouped columns remain as regular columns rather than becoming the index.

@@ -1,0 +1,15 @@
+import pandas as pd
+
+def count_salary_categories(accounts: pd.DataFrame) -> pd.DataFrame:
+    def categorize_salary(income):
+        if income < 20000:
+            return 'Low Salary'
+        elif 20000 <= income <= 50000:
+            return 'Average Salary'
+        else:
+            return 'High Salary'
+
+    accounts['category'] = accounts['income'].apply(categorize_salary)
+    result = accounts['category'].value_counts().reindex(['Low Salary','Average Salary', 'High Salary'], fill_value = 0)
+    result = result.reset_index()
+    return result.rename(columns= {'category':'category', 'count':'accounts_count'})

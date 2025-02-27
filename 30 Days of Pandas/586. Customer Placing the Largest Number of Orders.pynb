@@ -1,0 +1,7 @@
+import pandas as pd
+
+def largest_orders(orders: pd.DataFrame) -> pd.DataFrame:
+    result = orders.groupby('customer_number').size().sort_values( ascending =False).reset_index(name = 'count')
+    largest_order = result.head(1)
+    largest_order_customer_id = largest_order[['customer_number']]
+    return largest_order_customer_id

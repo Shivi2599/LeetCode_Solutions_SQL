@@ -1,0 +1,7 @@
+import pandas as pd
+
+def actors_and_directors(actor_director: pd.DataFrame) -> pd.DataFrame:
+    actors_and_directors_cooperated_atleast_three_times = actor_director.groupby(['actor_id','director_id'],as_index = False).agg(cooperated = ('timestamp', lambda x: x.count()))
+    actors_and_directors_cooperated_atleast_three_times.reset_index(drop =True)
+    result = actors_and_directors_cooperated_atleast_three_times[actors_and_directors_cooperated_atleast_three_times['cooperated'] >= 3][['actor_id', 'director_id']]
+    return result

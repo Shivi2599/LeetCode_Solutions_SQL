@@ -1,0 +1,6 @@
+import pandas as pd
+
+def categorize_products(activities: pd.DataFrame) -> pd.DataFrame:
+    activities = activities.drop_duplicates().reset_index(drop = True)
+    result = activities.groupby('sell_date').agg(num_sold = ('product',lambda x: len(set(x))), products = ('product', lambda x: ','.join(sorted(set(x))))).reset_index()
+    return result

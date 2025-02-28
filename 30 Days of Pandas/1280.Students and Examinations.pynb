@@ -1,0 +1,8 @@
+import pandas as pd
+
+def students_and_examinations(students: pd.DataFrame, subjects: pd.DataFrame, examinations: pd.DataFrame) -> pd.DataFrame:
+    students_subject = students.merge(subjects, how = 'cross')
+    occurrences = examinations.value_counts(subset = ['student_id','subject_name']).reset_index(name = 'attended_exams')
+    students_subject_occurrences = students_subject.merge(occurrences, how = 'left')
+    students_subject_occurrences['attended_exams'] = students_subject_occurrences['attended_exams'].fillna(0).astype('int64')
+    return students_subject_occurrences.sort_values(by = ['student_id','subject_name']) 

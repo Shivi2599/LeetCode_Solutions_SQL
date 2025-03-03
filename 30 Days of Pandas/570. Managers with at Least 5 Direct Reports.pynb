@@ -1,0 +1,6 @@
+import pandas as pd
+
+def find_managers(employee: pd.DataFrame) -> pd.DataFrame:
+    manager_counts = employee.groupby('managerId')['id'].size().reset_index(name= 'direct_reports')
+    manager = manager_counts[manager_counts['direct_reports']>=5]
+    return manager.merge(employee, left_on = 'managerId', right_on = 'id', how = 'inner')[['name']]
